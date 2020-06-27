@@ -6,4 +6,4 @@
  Have you never heard of the KISS priniciple ?
 
 
-## What doe
+## What does it do?
