@@ -49,13 +49,16 @@ pics = ['''
  / \  |
       |
 =========''']
-animals = ['monkey' , 'panda', 'shark', 'zebra', 'gorilla', 'walrus', 'leopard', 'wolf', 'antelope' ,'eagle','jellyfish','crab','giraffe','woodpecker','camel','starfish','koala','alligator','owl','tiger','bear']
+listoptions = {'animal':['monkey' , 'panda', 'shark', 'zebra', 'gorilla', 'walrus', 'leopard', 'wolf', 'antelope' ,'eagle','jellyfish','crab','giraffe','woodpecker','camel','starfish','koala','alligator','owl','tiger','bear'],
+               'food':['cookies', 'icecream','pizza', 'burger', 'taco','spaghetti','pasta','burritos','salad','smoothie','yogurt', 'cereal','cake','bread','meat', 'eggs','pancakes','pie','muffin','cheese','chips','bagel', 'fruit'],
+               'school':['backpack','pencil', 'whiteboard', 'marker', 'answer','book', 'binder','crayon','computer','classroom','test','gym','grades','homework','history','math','english','science','library','learn','notebook','paper']}
+
 
 #gets word by inputing array and returning secret word
-def getWord(secList):
-    wordIndex = random.randint(1, len(secList)-1)
-    return secList[wordIndex]
-
+def getWord(secDict):
+    wordkey = random.choice(list(secDict.keys()))
+    wordIndex = random.randint(1, len(wordkey)-1)
+    return [secDict[wordkey][wordIndex], wordkey]
 
 
 #will show blanks, missed letters, correct letters, and figure
@@ -132,20 +135,19 @@ def playagain():
 
 
 # Call everything in a while loop and then call again in a loop
-
 while True:
 
-    word = getWord(animals)
-    #print(word)
+    word, key = getWord(listoptions)
     wrong = []
     right = []
 
     gameDone = False
 
     while True:
+        print("The word is '"+ key + "' related.")
         board(pics, wrong, right, word)
 
-        if len(wrong) == 6:
+        if len(wrong) == len(pics) - 1:
             yay = 'You Looose!!! :( the word was ' + word
             gameDone = True
 
